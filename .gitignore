@@ -8,3 +8,7 @@
 
 # Personal prep notes - keep local, not for the public repo
 LINKEDIN.md
+
+# Generated video + frames (upload the mp4 directly, no need to commit)
+frames/
+*.mp4
