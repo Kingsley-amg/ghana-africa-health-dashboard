@@ -5,9 +5,9 @@ An end-to-end analytics project tracking key public-health indicators across **5
 > **The story in one line:** between 2000 and 2022 Ghana's under-5 mortality fell from **99.9 → 38.6** per 1,000, maternal mortality halved (**472 → 239**), malaria incidence more than halved, and life expectancy rose **+7 years** — while health spending per capita grew roughly **8×**.
 
 ### 🔗 Live interactive dashboard
-**[▶ View the live dashboard](https://YOUR-GITHUB-USERNAME.github.io/ghana-africa-health-dashboard/)** — pick an indicator, scrub the year, explore the Africa choropleth, Ghana-vs-peers trend, and country ranking.
+**[▶ View the live dashboard](https://kingsley-amg.github.io/ghana-africa-health-dashboard/)** — pick an indicator, scrub the year, explore the Africa choropleth, Ghana-vs-peers trend, and country ranking.
 
-*(A self-contained static dashboard — Plotly.js — that needs no server. To publish it: push this repo to GitHub, then **Settings ▸ Pages ▸ Build from branch ▸ `main` / `/docs`**. Your live URL appears within a minute. Update the link above with your username.)*
+*(A self-contained static dashboard — Plotly.js — that needs no server, hosted free on GitHub Pages.)*
 
 ---
 
@@ -95,5 +95,4 @@ R (jsonlite, tidyverse) · World Bank Open Data API · Power BI / Tableau · sta
 ## 👤 Author
 
 **Kingsley Amegah** — Health Data Scientist
-<!-- Add your links: -->
-LinkedIn: _your-profile_ · GitHub: _your-handle_
+GitHub: [@Kingsley-amg](https://github.com/Kingsley-amg) · LinkedIn: _add your profile link_
