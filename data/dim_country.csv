@@ -1,0 +1,54 @@
+iso3,country_name,region,income_level,latitude,longitude,is_ghana,is_west_africa,subregion
+DZA,Algeria,"Middle East, North Africa, Afghanistan & Pakistan",Upper middle income,36.7397,3.05097,FALSE,FALSE,North Africa
+AGO,Angola,Sub-Saharan Africa,Lower middle income,-8.81155,13.242,FALSE,FALSE,Sub-Saharan Africa
+BEN,Benin,Sub-Saharan Africa,Lower middle income,6.4779,2.6323,FALSE,TRUE,Sub-Saharan Africa
+BWA,Botswana,Sub-Saharan Africa,Upper middle income,-24.6544,25.9201,FALSE,FALSE,Sub-Saharan Africa
+BFA,Burkina Faso,Sub-Saharan Africa,Low income,12.3605,-1.53395,FALSE,TRUE,Sub-Saharan Africa
+BDI,Burundi,Sub-Saharan Africa,Low income,-3.3784,29.3639,FALSE,FALSE,Sub-Saharan Africa
+CPV,Cabo Verde,Sub-Saharan Africa,Upper middle income,14.9218,-23.5087,FALSE,TRUE,Sub-Saharan Africa
+CMR,Cameroon,Sub-Saharan Africa,Lower middle income,3.8721,11.5174,FALSE,FALSE,Sub-Saharan Africa
+CAF,Central African Republic,Sub-Saharan Africa,Low income,5.63056,21.6407,FALSE,FALSE,Sub-Saharan Africa
+TCD,Chad,Sub-Saharan Africa,Low income,12.1048,15.0445,FALSE,FALSE,Sub-Saharan Africa
+COM,Comoros,Sub-Saharan Africa,Lower middle income,-11.6986,43.2418,FALSE,FALSE,Sub-Saharan Africa
+COD,"Congo, Dem. Rep.",Sub-Saharan Africa,Low income,-4.325,15.3222,FALSE,FALSE,Sub-Saharan Africa
+COG,"Congo, Rep.",Sub-Saharan Africa,Lower middle income,-4.2767,15.2662,FALSE,FALSE,Sub-Saharan Africa
+CIV,Cote d'Ivoire,Sub-Saharan Africa,Lower middle income,5.332,-4.0305,FALSE,TRUE,Sub-Saharan Africa
+EGY,"Egypt, Arab Rep.","Middle East, North Africa, Afghanistan & Pakistan",Lower middle income,30.0982,31.2461,FALSE,FALSE,North Africa
+GNQ,Equatorial Guinea,Sub-Saharan Africa,Upper middle income,3.7523,8.7741,FALSE,FALSE,Sub-Saharan Africa
+ERI,Eritrea,Sub-Saharan Africa,Low income,15.3315,38.9183,FALSE,FALSE,Sub-Saharan Africa
+SWZ,Eswatini,Sub-Saharan Africa,Lower middle income,-26.5225,31.4659,FALSE,FALSE,Sub-Saharan Africa
+ETH,Ethiopia,Sub-Saharan Africa,Not classified,9.02274,38.7468,FALSE,FALSE,Sub-Saharan Africa
+GAB,Gabon,Sub-Saharan Africa,Upper middle income,0.38832,9.45162,FALSE,FALSE,Sub-Saharan Africa
+GMB,"Gambia, The",Sub-Saharan Africa,Low income,13.4495,-16.5885,FALSE,TRUE,Sub-Saharan Africa
+GHA,Ghana,Sub-Saharan Africa,Lower middle income,5.57045,-0.20795,TRUE,TRUE,Sub-Saharan Africa
+GIN,Guinea,Sub-Saharan Africa,Lower middle income,9.51667,-13.7,FALSE,TRUE,Sub-Saharan Africa
+GNB,Guinea-Bissau,Sub-Saharan Africa,Low income,11.8037,-15.1804,FALSE,TRUE,Sub-Saharan Africa
+KEN,Kenya,Sub-Saharan Africa,Lower middle income,-1.27975,36.8126,FALSE,FALSE,Sub-Saharan Africa
+LSO,Lesotho,Sub-Saharan Africa,Lower middle income,-29.5208,27.7167,FALSE,FALSE,Sub-Saharan Africa
+LBR,Liberia,Sub-Saharan Africa,Low income,6.30039,-10.7957,FALSE,TRUE,Sub-Saharan Africa
+LBY,Libya,"Middle East, North Africa, Afghanistan & Pakistan",Upper middle income,32.8578,13.1072,FALSE,FALSE,North Africa
+MDG,Madagascar,Sub-Saharan Africa,Low income,-20.4667,45.7167,FALSE,FALSE,Sub-Saharan Africa
+MWI,Malawi,Sub-Saharan Africa,Low income,-13.9899,33.7703,FALSE,FALSE,Sub-Saharan Africa
+MLI,Mali,Sub-Saharan Africa,Low income,13.5667,-7.50034,FALSE,TRUE,Sub-Saharan Africa
+MRT,Mauritania,Sub-Saharan Africa,Lower middle income,18.2367,-15.9824,FALSE,TRUE,Sub-Saharan Africa
+MUS,Mauritius,Sub-Saharan Africa,Upper middle income,-20.1605,57.4977,FALSE,FALSE,Sub-Saharan Africa
+MAR,Morocco,"Middle East, North Africa, Afghanistan & Pakistan",Lower middle income,33.9905,-6.8704,FALSE,FALSE,North Africa
+MOZ,Mozambique,Sub-Saharan Africa,Low income,-25.9664,32.5713,FALSE,FALSE,Sub-Saharan Africa
+NAM,Namibia,Sub-Saharan Africa,Lower middle income,-22.5648,17.0931,FALSE,FALSE,Sub-Saharan Africa
+NER,Niger,Sub-Saharan Africa,Low income,13.514,2.1073,FALSE,TRUE,Sub-Saharan Africa
+NGA,Nigeria,Sub-Saharan Africa,Lower middle income,9.05804,7.48906,FALSE,TRUE,Sub-Saharan Africa
+RWA,Rwanda,Sub-Saharan Africa,Low income,-1.95325,30.0587,FALSE,FALSE,Sub-Saharan Africa
+STP,Sao Tome and Principe,Sub-Saharan Africa,Lower middle income,0.20618,6.6071,FALSE,FALSE,Sub-Saharan Africa
+SEN,Senegal,Sub-Saharan Africa,Lower middle income,14.7247,-17.4734,FALSE,TRUE,Sub-Saharan Africa
+SYC,Seychelles,Sub-Saharan Africa,High income,-4.6309,55.4466,FALSE,FALSE,Sub-Saharan Africa
+SLE,Sierra Leone,Sub-Saharan Africa,Low income,8.4821,-13.2134,FALSE,TRUE,Sub-Saharan Africa
+SOM,"Somalia, Fed. Rep.",Sub-Saharan Africa,Low income,2.07515,45.3254,FALSE,FALSE,Sub-Saharan Africa
+ZAF,South Africa,Sub-Saharan Africa,Upper middle income,-25.746,28.1871,FALSE,FALSE,Sub-Saharan Africa
+SSD,South Sudan,Sub-Saharan Africa,Low income,4.85,31.6,FALSE,FALSE,Sub-Saharan Africa
+SDN,Sudan,Sub-Saharan Africa,Low income,15.5932,32.5363,FALSE,FALSE,North Africa
+TZA,Tanzania,Sub-Saharan Africa,Lower middle income,-6.17486,35.7382,FALSE,FALSE,Sub-Saharan Africa
+TGO,Togo,Sub-Saharan Africa,Low income,6.1228,1.2255,FALSE,TRUE,Sub-Saharan Africa
+TUN,Tunisia,"Middle East, North Africa, Afghanistan & Pakistan",Lower middle income,36.7899,10.21,FALSE,FALSE,North Africa
+UGA,Uganda,Sub-Saharan Africa,Low income,0.314269,32.5729,FALSE,FALSE,Sub-Saharan Africa
+ZMB,Zambia,Sub-Saharan Africa,Lower middle income,-15.3982,28.2937,FALSE,FALSE,Sub-Saharan Africa
+ZWE,Zimbabwe,Sub-Saharan Africa,Lower middle income,-17.8312,31.0672,FALSE,FALSE,Sub-Saharan Africa

@@ -1,0 +1,10 @@
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
+*.pbix
+*.twb
+*.twbx
+
+# Personal prep notes - keep local, not for the public repo
+LINKEDIN.md

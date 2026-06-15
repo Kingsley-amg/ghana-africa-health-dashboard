@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ghana &amp; Africa Health Surveillance Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script src="data.js"></script>
+<style>
+  :root{
+    --ink:#1a2330; --muted:#6b7785; --line:#e6e9ee; --bg:#f5f7fa;
+    --card:#ffffff; --accent:#e31a1c; --blue:#1f78b4; --good:#1a9850; --bad:#d73027;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);}
+  header{background:var(--ink);color:#fff;padding:22px 28px;}
+  header h1{margin:0;font-size:20px;font-weight:700;}
+  header p{margin:4px 0 0;font-size:13px;color:#aab4c2;}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 24px 40px;}
+  .controls{display:flex;gap:24px;flex-wrap:wrap;align-items:center;
+            background:var(--card);border:1px solid var(--line);border-radius:10px;
+            padding:14px 18px;margin-bottom:18px;}
+  .controls label{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);display:block;margin-bottom:4px;}
+  select,input[type=range]{font-size:14px;}
+  select{padding:7px 10px;border:1px solid var(--line);border-radius:7px;background:#fff;min-width:280px;}
+  .yearbox{min-width:230px}
+  .yearval{font-weight:700;color:var(--blue);margin-left:8px;}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px;}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .kpi .t{font-size:12px;color:var(--muted);min-height:32px;}
+  .kpi .v{font-size:25px;font-weight:700;margin-top:6px;}
+  .kpi .d{font-size:12px;margin-top:4px;font-weight:600;}
+  .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px 4px;}
+  .panel h3{margin:6px 8px 0;font-size:14px;}
+  .full{grid-column:1 / -1;}
+  footer{color:var(--muted);font-size:12px;text-align:center;padding:8px 0 0;}
+  @media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ghana &amp; Africa Health Surveillance Dashboard</h1>
+  <p>Key public-health indicators across 53 African countries, 2000–2022 · Source: World Bank Open Data</p>
+</header>
+
+<div class="wrap">
+  <div class="controls">
+    <div>
+      <label for="indicator">Indicator</label>
+      <select id="indicator"></select>
+    </div>
+    <div class="yearbox">
+      <label for="year">Map &amp; ranking year <span class="yearval" id="yearval"></span></label>
+      <input type="range" id="year" min="2000" max="2022" step="1" value="2022" style="width:200px" />
+    </div>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="grid">
+    <div class="panel"><h3 id="mapTitle">Map</h3><div id="map" style="height:430px"></div></div>
+    <div class="panel"><h3 id="lineTitle">Ghana vs West-Africa average</h3><div id="line" style="height:430px"></div></div>
+    <div class="panel full"><h3 id="barTitle">West-Africa ranking</h3><div id="bar" style="height:380px"></div></div>
+  </div>
+
+  <footer>Built by Kingsley Amegah · Data © World Bank (CC BY 4.0) · Static dashboard (Plotly.js)</footer>
+</div>
+
+<script>
+const YEARS = Array.from({length:23},(_,i)=>2000+i);
+const KPI_CODES = ["SP.DYN.LE00.IN","SH.DYN.MORT","SH.STA.MMRT","SH.MLR.INCD.P3","SH.XPD.CHEX.PC.CD"];
+const byCode = Object.fromEntries(INDICATORS.map(i=>[i.code,i]));
+const ctyByIso = Object.fromEntries(COUNTRIES.map(c=>[c.iso3,c]));
+const WA = COUNTRIES.filter(c=>c.is_west_africa);
+const AFR = COUNTRIES.map(c=>c.iso3);
+
+function valAt(code,iso3,year){
+  const d = DATA[code]; if(!d||!d[iso3]) return null;
+  const v = d[iso3][String(year)]; return (v===undefined)?null:v;
+}
+function latest(code,iso3){
+  for(let y=2022;y>=2000;y--){const v=valAt(code,iso3,y); if(v!==null) return {year:y,value:v};}
+  return null;
+}
+function fmt(code,v){
+  if(v===null||v===undefined) return "–";
+  const u=byCode[code].unit;
+  if(u==="current US$") return "$"+Math.round(v).toLocaleString();
+  if(u==="years") return v.toFixed(1);
+  return Math.round(v).toLocaleString();
+}
+function isGood(code,change){
+  const hib=byCode[code].higher_is_better;
+  return (hib&&change>0)||(!hib&&change<0);
+}
+
+/* ---------- KPI cards (Ghana) ---------- */
+function renderKPIs(){
+  const el=document.getElementById("kpis"); el.innerHTML="";
+  KPI_CODES.forEach(code=>{
+    const lat=latest(code,"GHA"); const v2000=valAt(code,"GHA",2000);
+    let delta="";
+    if(lat&&v2000){
+      const ch=((lat.value-v2000)/v2000)*100;
+      const good=isGood(code,ch);
+      const arrow=ch>0?"▲":"▼";
+      delta=`<div class="d" style="color:${good?'var(--good)':'var(--bad)'}">`+
+            `${arrow} ${Math.abs(ch).toFixed(1)}% since 2000</div>`;
+    }
+    el.insertAdjacentHTML("beforeend",
+      `<div class="kpi"><div class="t">${byCode[code].name}</div>`+
+      `<div class="v">${lat?fmt(code,lat.value):"–"}</div>${delta}</div>`);
+  });
+}
+
+/* ---------- Map (choropleth) ---------- */
+function renderMap(code,year){
+  const hib=byCode[code].higher_is_better;
+  const locs=[],z=[],text=[];
+  AFR.forEach(iso=>{const v=valAt(code,iso,year);
+    if(v!==null){locs.push(iso);z.push(v);text.push(ctyByIso[iso].name+": "+fmt(code,v));}});
+  // Intuitive colours: green = good, red = bad (depends on indicator direction)
+  const scale = hib ? "YlGn" : "YlOrRd";
+  const data=[{type:"choropleth",locationmode:"ISO-3",locations:locs,z:z,text:text,
+    hoverinfo:"text",colorscale:scale,
+    marker:{line:{color:"#fff",width:0.5}},colorbar:{title:byCode[code].unit,thickness:12}}];
+  const layout={geo:{scope:"africa",showframe:false,showcoastlines:false,bgcolor:"rgba(0,0,0,0)"},
+    margin:{t:6,b:6,l:6,r:6},paper_bgcolor:"rgba(0,0,0,0)"};
+  Plotly.react("map",data,layout,{displayModeBar:false,responsive:true});
+  document.getElementById("mapTitle").textContent=`${byCode[code].name} — ${year}`;
+}
+
+/* ---------- Line: Ghana vs West-Africa average ---------- */
+function renderLine(code){
+  const ghana=YEARS.map(y=>valAt(code,"GHA",y));
+  const waAvg=YEARS.map(y=>{
+    const vals=WA.map(c=>valAt(code,c.iso3,y)).filter(v=>v!==null);
+    return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null;});
+  const data=[
+    {x:YEARS,y:waAvg,name:"West-Africa avg",mode:"lines",line:{color:"#9aa6b2",width:2,dash:"dot"}},
+    {x:YEARS,y:ghana,name:"Ghana",mode:"lines+markers",line:{color:"#e31a1c",width:3},marker:{size:5}}
+  ];
+  const layout={margin:{t:6,b:34,l:48,r:10},legend:{orientation:"h",y:-0.18},
+    yaxis:{title:byCode[code].unit,gridcolor:"#eef1f4"},xaxis:{gridcolor:"#eef1f4"},
+    paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)"};
+  Plotly.react("line",data,layout,{displayModeBar:false,responsive:true});
+  document.getElementById("lineTitle").textContent=`Ghana vs West-Africa average — ${byCode[code].name}`;
+}
+
+/* ---------- Bar: West-Africa ranking ---------- */
+function renderBar(code,year){
+  const hib=byCode[code].higher_is_better;
+  let rows=WA.map(c=>({name:c.name,iso:c.iso3,v:valAt(code,c.iso3,year)})).filter(r=>r.v!==null);
+  rows.sort((a,b)=> hib ? a.v-b.v : b.v-a.v);   // best country ends up on top
+  const colors=rows.map(r=>r.iso==="GHA"?"#e31a1c":"#c3ccd6");
+  const data=[{type:"bar",orientation:"h",x:rows.map(r=>r.v),y:rows.map(r=>r.name),
+    marker:{color:colors},text:rows.map(r=>fmt(code,r.v)),textposition:"auto",hoverinfo:"x+y"}];
+  const layout={margin:{t:6,b:30,l:110,r:20},xaxis:{title:byCode[code].unit,gridcolor:"#eef1f4"},
+    paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)"};
+  Plotly.react("bar",data,layout,{displayModeBar:false,responsive:true});
+  document.getElementById("barTitle").textContent=
+    `West-Africa ranking — ${byCode[code].name} (${year}) · Ghana in red`;
+}
+
+/* ---------- Wire up ---------- */
+function refresh(){
+  const code=document.getElementById("indicator").value;
+  const year=+document.getElementById("year").value;
+  document.getElementById("yearval").textContent=year;
+  renderMap(code,year); renderLine(code); renderBar(code,year);
+}
+function init(){
+  const sel=document.getElementById("indicator");
+  INDICATORS.forEach(i=>{const o=document.createElement("option");o.value=i.code;o.textContent=i.name;sel.appendChild(o);});
+  sel.value="SH.DYN.MORT";
+  sel.addEventListener("change",refresh);
+  document.getElementById("year").addEventListener("input",refresh);
+  renderKPIs(); refresh();
+}
+init();
+</script>
+</body>
+</html>

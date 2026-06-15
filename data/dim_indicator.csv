@@ -1,0 +1,9 @@
+indicator_code,indicator_name,unit,category,higher_is_better
+SP.DYN.LE00.IN,Life expectancy at birth,years,Outcomes,TRUE
+SH.DYN.MORT,Under-5 mortality rate,"per 1,000 live births",Mortality,FALSE
+SP.DYN.IMRT.IN,Infant mortality rate,"per 1,000 live births",Mortality,FALSE
+SH.STA.MMRT,Maternal mortality ratio,"per 100,000 births",Mortality,FALSE
+SH.IMM.MEAS,Measles immunization (ages 12-23 months),% of children,Prevention,TRUE
+SH.IMM.IDPT,DPT immunization (ages 12-23 months),% of children,Prevention,TRUE
+SH.MLR.INCD.P3,Malaria incidence,"per 1,000 at risk",Disease burden,FALSE
+SH.XPD.CHEX.PC.CD,Health expenditure per capita,current US$,Resources,TRUE
