@@ -1,7 +1,7 @@
 # Dashboard Build Guide (Power BI & Tableau)
 
 This guide turns the `data/` star schema into an interactive, recruiter-ready
-dashboard. Follow the **Power BI** path or the **Tableau** path — both end with a
+dashboard. Follow the **Power BI** path or the **Tableau** path, both end with a
 free, shareable **live link** you can pin on LinkedIn.
 
 ---
@@ -21,7 +21,7 @@ dim_indicator[indicator_code] 1 ──► * fact_health_long[indicator_code]
 ```
 
 In Power BI: *Model view* → drag the keys together. In Tableau: relate them on
-the data-source canvas. This is a classic **star schema** — say so in your README;
+the data-source canvas. This is a classic **star schema**, say so in your README;
 recruiters notice modelling.
 
 ---
@@ -67,27 +67,27 @@ Value 2000:         SUM(IF [Year] = 2000 THEN [Value] END)
 Design **three pages**. Keep one consistent colour theme (Ghana = a single
 accent colour, e.g. red `#E31A1C`; everything else neutral grey).
 
-### Page 1 — Executive Overview (for *any* recruiter)
+### Page 1, Executive Overview (for *any* recruiter)
 - **5 KPI cards** (top row): Life expectancy, Under-5 mortality, Maternal
-  mortality, Malaria incidence, Health spend per capita — each showing the
+  mortality, Malaria incidence, Health spend per capita, each showing the
   latest value + `% Change since 2000` with an up/down arrow coloured by
   `higher_is_better`.
 - **Choropleth map** (see §4) of the selected indicator across Africa.
 - **Slicers:** Indicator (single-select), Year.
 - One sentence of insight as a text box (the "so what").
 
-### Page 2 — Ghana Spotlight (your domain edge)
+### Page 2, Ghana Spotlight (your domain edge)
 - **Line chart**: selected indicator over time, Ghana vs West-Africa average
-  (two lines) — uses `is_west_africa`.
+  (two lines), uses `is_west_africa`.
 - **Small multiples**: all indicators for Ghana over time (like
   `preview/ghana_trends.png`).
 - KPI cards specific to Ghana.
 
-### Page 3 — Country Benchmark
+### Page 3, Country Benchmark
 - **Bar chart** ranking all countries on the selected indicator (latest year),
   Ghana bar highlighted (like `preview/westafrica_ranking.png`).
 - **Scatter**: Health expenditure per capita (x) vs Life expectancy (y), one
-  dot per country, sized by nothing/coloured by subregion — shows the
+  dot per country, sized by nothing/coloured by subregion, shows the
   spend↔outcome relationship.
 - **Matrix/heatmap**: country (rows) × indicator (cols), colour = value.
 
@@ -111,7 +111,7 @@ accent colour, e.g. red `#E31A1C`; everything else neutral grey).
 - Format numbers (no 6-decimal noise): mortality 0 dp, % 1 dp, US$ with `$`.
 - Add a **tooltip** on the map/bars showing country + value + rank.
 - Make the **Indicator slicer sync** across all pages.
-- Sentence of insight per page — recruiters skim; tell them what to conclude.
+- Sentence of insight per page, recruiters skim; tell them what to conclude.
 
 ## 6. Publish a LIVE link (do this!)
 
@@ -124,8 +124,8 @@ accent colour, e.g. red `#E31A1C`; everything else neutral grey).
 ---
 
 ## Suggested build order (≈ half a day)
-1. Load data + relationships (§1) — 15 min
-2. Measures (§2) — 20 min
-3. Page 1 overview + map (§3, §4) — 90 min
-4. Pages 2 & 3 — 90 min
-5. Polish + publish (§5, §6) — 45 min
+1. Load data + relationships (§1), 15 min
+2. Measures (§2), 20 min
+3. Page 1 overview + map (§3, §4), 90 min
+4. Pages 2 & 3, 90 min
+5. Polish + publish (§5, §6), 45 min

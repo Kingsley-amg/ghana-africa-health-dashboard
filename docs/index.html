@@ -52,7 +52,7 @@
 <body>
 <header>
   <h1>Ghana &amp; Africa Health Surveillance Dashboard</h1>
-  <p>Key public-health indicators across 53 African countries, 2000–2022 · Source: World Bank Open Data</p>
+  <p>Key public-health indicators across 53 African countries, 2000-2022 · Source: World Bank Open Data</p>
 </header>
 
 <div class="wrap">
@@ -95,7 +95,7 @@ function latest(code,iso3){
   return null;
 }
 function fmt(code,v){
-  if(v===null||v===undefined) return "–";
+  if(v===null||v===undefined) return "-";
   const u=byCode[code].unit;
   if(u==="current US$") return "$"+Math.round(v).toLocaleString();
   if(u==="years") return v.toFixed(1);
@@ -121,7 +121,7 @@ function renderKPIs(){
     }
     el.insertAdjacentHTML("beforeend",
       `<div class="kpi"><div class="t">${byCode[code].name}</div>`+
-      `<div class="v">${lat?fmt(code,lat.value):"–"}</div>${delta}</div>`);
+      `<div class="v">${lat?fmt(code,lat.value):"-"}</div>${delta}</div>`);
   });
 }
 
@@ -139,7 +139,7 @@ function renderMap(code,year){
   const layout={geo:{scope:"africa",showframe:false,showcoastlines:false,bgcolor:"rgba(0,0,0,0)"},
     margin:{t:6,b:6,l:6,r:6},paper_bgcolor:"rgba(0,0,0,0)"};
   Plotly.react("map",data,layout,{displayModeBar:false,responsive:true});
-  document.getElementById("mapTitle").textContent=`${byCode[code].name} — ${year}`;
+  document.getElementById("mapTitle").textContent=`${byCode[code].name}, ${year}`;
 }
 
 /* ---------- Line: Ghana vs West-Africa average ---------- */
@@ -156,7 +156,7 @@ function renderLine(code){
     yaxis:{title:byCode[code].unit,gridcolor:"#eef1f4"},xaxis:{gridcolor:"#eef1f4"},
     paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)"};
   Plotly.react("line",data,layout,{displayModeBar:false,responsive:true});
-  document.getElementById("lineTitle").textContent=`Ghana vs West-Africa average — ${byCode[code].name}`;
+  document.getElementById("lineTitle").textContent=`Ghana vs West-Africa average, ${byCode[code].name}`;
 }
 
 /* ---------- Bar: West-Africa ranking ---------- */
@@ -171,7 +171,7 @@ function renderBar(code,year){
     paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)"};
   Plotly.react("bar",data,layout,{displayModeBar:false,responsive:true});
   document.getElementById("barTitle").textContent=
-    `West-Africa ranking — ${byCode[code].name} (${year}) · Ghana in red`;
+    `West-Africa ranking, ${byCode[code].name} (${year}) · Ghana in red`;
 }
 
 /* ---------- Wire up ---------- */

@@ -1,13 +1,13 @@
 # Ghana & Africa Health Surveillance Dashboard
 
-An end-to-end analytics project tracking key public-health indicators across **53 African countries (2000–2022)**, with a spotlight on **Ghana** and its West-African peers. Built from live **World Bank Open Data**, modelled as a clean star schema, and visualised in an interactive **Power BI / Tableau** dashboard.
+An end-to-end analytics project tracking key public-health indicators across **53 African countries (2000-2022)**, with a spotlight on **Ghana** and its West-African peers. Built from live **World Bank Open Data**, modelled as a clean star schema, and visualised in an interactive **Power BI / Tableau** dashboard.
 
-> **The story in one line:** between 2000 and 2022 Ghana's under-5 mortality fell from **99.9 → 38.6** per 1,000, maternal mortality halved (**472 → 239**), malaria incidence more than halved, and life expectancy rose **+7 years** — while health spending per capita grew roughly **8×**.
+> **The story in one line:** between 2000 and 2022 Ghana's under-5 mortality fell from **99.9 → 38.6** per 1,000, maternal mortality halved (**472 → 239**), malaria incidence more than halved, and life expectancy rose **+7 years**, while health spending per capita grew roughly **8×**.
 
 ### 🔗 Live interactive dashboard
-**[▶ View the live dashboard](https://kingsley-amg.github.io/ghana-africa-health-dashboard/)** — pick an indicator, scrub the year, explore the Africa choropleth, Ghana-vs-peers trend, and country ranking.
+**[▶ View the live dashboard](https://kingsley-amg.github.io/ghana-africa-health-dashboard/)**, pick an indicator, scrub the year, explore the Africa choropleth, Ghana-vs-peers trend, and country ranking.
 
-*(A self-contained static dashboard — Plotly.js — that needs no server, hosted free on GitHub Pages.)*
+*(A self-contained static dashboard, Plotly.js, that needs no server, hosted free on GitHub Pages.)*
 
 ---
 
@@ -17,17 +17,17 @@ An end-to-end analytics project tracking key public-health indicators across **5
 |---|---|
 | ![Ghana trends](preview/ghana_trends.png) | ![West Africa ranking](preview/westafrica_ranking.png) |
 
-*(These are validation charts produced in R. The interactive dashboard is built in Power BI / Tableau — see [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md).)*
+*(These are validation charts produced in R. The interactive dashboard is built in Power BI / Tableau, see [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md).)*
 
 ---
 
 ## 🎯 What this project demonstrates
 
-- **Data engineering / ETL** — pulling live data from a public REST API, cleaning it, and shaping it into an analytics-ready model (R).
-- **Dimensional modelling** — a proper star schema (1 fact + 3 dimension tables) that any BI tool can consume.
-- **BI & dashboard design** — KPIs, trends, country benchmarking, and a geospatial choropleth map.
-- **Domain insight** — framing the numbers as a public-health narrative, not just charts.
-- **Reproducibility** — one script rebuilds the entire dataset from scratch.
+- **Data engineering / ETL**, pulling live data from a public REST API, cleaning it, and shaping it into an analytics-ready model (R).
+- **Dimensional modelling**, a proper star schema (1 fact + 3 dimension tables) that any BI tool can consume.
+- **BI & dashboard design**, KPIs, trends, country benchmarking, and a geospatial choropleth map.
+- **Domain insight**, framing the numbers as a public-health narrative, not just charts.
+- **Reproducibility**, one script rebuilds the entire dataset from scratch.
 
 ---
 
@@ -61,9 +61,9 @@ ghana-africa-health-dashboard/
             fact_health_long (iso3, year, indicator_code, value)
 ```
 
-- `fact_health_long` — one row per country × year × indicator (the grain).
-- `dim_country` — joins on `iso3`; adds region, income level, coordinates, and `is_ghana` / `is_west_africa` flags.
-- `dim_indicator` — joins on `indicator_code`; adds readable name, unit, category, and a `higher_is_better` flag for conditional formatting.
+- `fact_health_long`, one row per country × year × indicator (the grain).
+- `dim_country`, joins on `iso3`; adds region, income level, coordinates, and `is_ghana` / `is_west_africa` flags.
+- `dim_indicator`, joins on `indicator_code`; adds readable name, unit, category, and a `higher_is_better` flag for conditional formatting.
 
 ## 📊 Indicators (source: World Bank)
 
@@ -73,8 +73,8 @@ ghana-africa-health-dashboard/
 | Under-5 mortality rate | per 1,000 live births | Mortality |
 | Infant mortality rate | per 1,000 live births | Mortality |
 | Maternal mortality ratio | per 100,000 births | Mortality |
-| Measles immunization (12–23 mo) | % of children | Prevention |
-| DPT immunization (12–23 mo) | % of children | Prevention |
+| Measles immunization (12-23 mo) | % of children | Prevention |
+| DPT immunization (12-23 mo) | % of children | Prevention |
 | Malaria incidence | per 1,000 at risk | Disease burden |
 | Health expenditure per capita | current US$ | Resources |
 
@@ -94,5 +94,5 @@ R (jsonlite, tidyverse) · World Bank Open Data API · Power BI / Tableau · sta
 
 ## 👤 Author
 
-**Kingsley Amegah** — Health Data Scientist
+**Kingsley Amegah**, Health Data Scientist
 GitHub: [@Kingsley-amg](https://github.com/Kingsley-amg) · LinkedIn: _add your profile link_
